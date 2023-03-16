@@ -7,13 +7,9 @@
 import { Options, Vue } from "vue-class-component";
 
 @Options({
-  props: {
-    msg: String,
-  },
+  props: {},
 })
-export default class Footer extends Vue {
-  msg!: string;
-}
+export default class Footer extends Vue {}
 </script>
   <style scoped>
 h3 {

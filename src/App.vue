@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar :alt="logo_alt" :logo="logo_src" />
   <router-view />
   <Footer />
 </template>
@@ -13,11 +13,19 @@ export default {
     Navbar,
     Footer,
   },
+  data() {
+    return {
+      logo_src: "logo.png",
+      logo_alt: "logo ",
+    };
+  },
 };
 </script>
 
-<!-- <style>
-nav a.router-link-exact-active {
-  color: #42b983;
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica";
 }
-</style> -->
+</style>
