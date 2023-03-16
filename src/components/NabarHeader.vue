@@ -3,7 +3,7 @@
     <router-link to="/" id="lofoUrl">
       <img :alt="alt" :src="logo" id="logo" />
     </router-link>
-    <router-link to="/">Home</router-link> |
+    <router-link to="/">Home</router-link>
     <router-link to="/pedidos">About</router-link>
   </nav>
 </template>
