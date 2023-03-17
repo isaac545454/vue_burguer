@@ -3,6 +3,7 @@
     <h1>Make Your Burger</h1>
   </div>
 </template>
+
 <script>
 import { Options, Vue } from "vue-class-component";
 @Options({
