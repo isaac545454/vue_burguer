@@ -16,33 +16,32 @@
           <label for="bread"> Escolha o pão </label>
           <select id="bread" v-model="bread" placeholder="Digite seu Nome">
             <option value="">Selecione Seu Pão</option>
+            <option v-for="b in bread" :key="b.id" value="p.tipo">
+              {{ b.tipo }}
+            </option>
           </select>
         </div>
         <div class="input-container">
-          <label for="meat"> Escolha o pão </label>
+          <label for="meat"> Escolha o Carne </label>
           <select id="meat" v-model="meat" placeholder="Digite seu Nome">
             <option value="">Selecione o Tipo de Carne</option>
+            <option v-for="m in meat" :key="m.id" value="m.tipo">
+              {{ m.tipo }}
+            </option>
           </select>
         </div>
         <div class="optional-container">
-          <label for="optional" id="optional-title"> Escolha o pão </label>
-          <div id="checkbox-container">
+          <label for="optional" id="optional-title">
+            Escolha os Adicionais
+          </label>
+          <div id="checkbox-container" v-for="o in optional" :key="o.id">
             <input
               type="checkbox"
               name="optional"
               v-model="optional"
-              value="Salame"
+              :value="optional.tipo"
             />
-            <span>Salame</span>
-          </div>
-          <div id="checkbox-container">
-            <input
-              type="checkbox"
-              name="optional"
-              v-model="optional"
-              value="Salame"
-            />
-            <span>Salame</span>
+            <span>{{ o.tipo }}</span>
           </div>
         </div>
         <div class="submit-btn">
@@ -55,7 +54,33 @@
 
 <script>
 import { Vue } from "vue-class-component";
-export default class BurguerForm extends Vue {}
+export default class BurguerForm extends Vue {
+  data() {
+    return {
+      optional: null,
+      meat: null,
+      bread: null,
+      name: null,
+      optionalUser: [],
+      meatUser: null,
+      breadUser: null,
+      status: "Solicitado",
+      msg: null,
+    };
+  }
+  async getIngredients() {
+    const res = await fetch("http://localhost:3000/ingredientes");
+    const dataRes = await res.json();
+    console.log(dataRes);
+    this.bread = dataRes.paes;
+    this.meat = dataRes.carnes;
+    this.optional = dataRes.opcionais;
+    console.log(this.meat);
+  }
+  mounted() {
+    this.getIngredients();
+  }
+}
 </script>
 
 <style scoped>
