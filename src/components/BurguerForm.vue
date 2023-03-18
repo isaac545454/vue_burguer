@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Component de mensagem</p>
+    <Message :msg="msg" v-show="msg" />
     <div>
       <form id="burguer-form" @submit="createBurger">
         <div class="input-container">
@@ -53,7 +53,14 @@
 </template>
 
 <script>
-import { Vue } from "vue-class-component";
+import { Vue, Options } from "vue-class-component";
+import Message from "./message.vue";
+
+@Options({
+  components: {
+    Message,
+  },
+})
 export default class BurguerForm extends Vue {
   data() {
     return {
@@ -98,6 +105,9 @@ export default class BurguerForm extends Vue {
           this.meatUser = "";
           this.breadUser = "";
           this.name = "";
+          this.msg = `Pedido Numero ${res.id} Realizado com Sucesso`;
+
+          setTimeout(() => (this.msg = ""), 3000);
         })
       )
       .catch((err) => console.log(err));
@@ -124,26 +134,29 @@ label {
   color: #222;
   padding: 5px 10px;
   border-left: 4px solid #fcba03;
+  margin-bottom: 10px;
 }
 
 input,
 select {
   padding: 5px 10px;
-  width: 300px;
+  width: 400px;
 }
 
 .optional-container {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+
+  justify-content: space-around;
   flex-wrap: wrap;
-  width: 200px;
+  width: 400px;
   margin-bottom: 20px;
   font-weight: bold;
 }
 
-.optional-container input {
-  width: 30px;
+.optional-container input,
+.optional-container span {
+  width: 20px;
+  margin-top: 20px;
 }
 
 #optional-title {
@@ -160,7 +173,7 @@ select {
   margin: 0 auto;
   cursor: pointer;
   transition: 0.4s;
-  width: 300px;
+  width: 400px;
 }
 .submit-btn input:hover {
   background: transparent;
