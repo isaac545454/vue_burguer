@@ -2,7 +2,7 @@
   <div>
     <p>Component de mensagem</p>
     <div>
-      <Form id="burguer-form">
+      <form id="burguer-form" @submit="createBurger">
         <div class="input-container">
           <label for="name"> Name dp cliente </label>
           <input
@@ -14,18 +14,18 @@
         </div>
         <div class="input-container">
           <label for="bread"> Escolha o pão </label>
-          <select id="bread" v-model="bread" placeholder="Digite seu Nome">
+          <select id="bread" v-model="breadUser" placeholder="Digite seu Nome">
             <option value="">Selecione Seu Pão</option>
-            <option v-for="b in bread" :key="b.id" value="p.tipo">
+            <option v-for="b in bread" :key="b.id" :value="b.tipo">
               {{ b.tipo }}
             </option>
           </select>
         </div>
         <div class="input-container">
           <label for="meat"> Escolha o Carne </label>
-          <select id="meat" v-model="meat" placeholder="Digite seu Nome">
+          <select id="meat" v-model="meatUser" placeholder="Digite seu Nome">
             <option value="">Selecione o Tipo de Carne</option>
-            <option v-for="m in meat" :key="m.id" value="m.tipo">
+            <option v-for="m in meat" :key="m.id" :value="m.tipo">
               {{ m.tipo }}
             </option>
           </select>
@@ -38,8 +38,8 @@
             <input
               type="checkbox"
               name="optional"
-              v-model="optional"
-              :value="optional.tipo"
+              v-model="optionalUser"
+              :value="o.tipo"
             />
             <span>{{ o.tipo }}</span>
           </div>
@@ -47,7 +47,7 @@
         <div class="submit-btn">
           <input type="submit" class="submit-btn" value="criar meu Burguer" />
         </div>
-      </Form>
+      </form>
     </div>
   </div>
 </template>
@@ -64,7 +64,6 @@ export default class BurguerForm extends Vue {
       optionalUser: [],
       meatUser: null,
       breadUser: null,
-      status: "Solicitado",
       msg: null,
     };
   }
@@ -76,6 +75,32 @@ export default class BurguerForm extends Vue {
     this.meat = dataRes.carnes;
     this.optional = dataRes.opcionais;
     console.log(this.meat);
+  }
+  async createBurger(e) {
+    e.preventDefault();
+    const data = {
+      nome: this.name,
+      carne: this.meatUser,
+      pao: this.breadUser,
+      opcionais: Array.from(this.optionalUser),
+      status: "Solicitado",
+    };
+    const stringData = JSON.stringify(data);
+    const req = await fetch("http://localhost:3000/burgers", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: stringData,
+    })
+      .then((res) =>
+        res.json().then((res) => {
+          console.log(res);
+          this.optionalUser = [];
+          this.meatUser = "";
+          this.breadUser = "";
+          this.name = "";
+        })
+      )
+      .catch((err) => console.log(err));
   }
   mounted() {
     this.getIngredients();

@@ -77,5 +77,46 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": []
+  "burgers": [
+    {
+      "nome": "aaaaaaaaaaa",
+      "carne": "Maminha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Bacon"
+      ],
+      "status": "Solicitado",
+      "id": 1
+    },
+    {
+      "nome": "aaaaaaaaaaaaaaa",
+      "carne": "Maminha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Cheddar"
+      ],
+      "status": "Solicitado",
+      "id": 2
+    },
+    {
+      "nome": "aaaaaaaaaaaaaaaa",
+      "carne": "Maminha",
+      "pao": "3 Queijos",
+      "opcionais": [
+        "Bacon"
+      ],
+      "status": "Solicitado",
+      "id": 3
+    },
+    {
+      "nome": "aaaaaaaaaaaaa",
+      "carne": "Maminha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Cheddar"
+      ],
+      "status": "Solicitado",
+      "id": 4
+    }
+  ]
 }
