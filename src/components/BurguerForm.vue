@@ -83,6 +83,7 @@ export default class BurguerForm extends Vue {
     this.optional = dataRes.opcionais;
     console.log(this.meat);
   }
+
   async createBurger(e) {
     e.preventDefault();
     const data = {
@@ -93,7 +94,7 @@ export default class BurguerForm extends Vue {
       status: "Solicitado",
     };
     const stringData = JSON.stringify(data);
-    const req = await fetch("http://localhost:3000/burgers", {
+    await fetch("http://localhost:3000/burgers", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: stringData,
@@ -112,6 +113,7 @@ export default class BurguerForm extends Vue {
       )
       .catch((err) => console.log(err));
   }
+
   mounted() {
     this.getIngredients();
   }

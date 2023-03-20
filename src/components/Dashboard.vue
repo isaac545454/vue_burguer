@@ -24,7 +24,11 @@
           </ul>
         </div>
         <div>
-          <select name="status" class="status">
+          <select
+            name="status"
+            class="status"
+            @change="updatedBurguer($event, b.id)"
+          >
             <option
               v-for="s in status"
               :key="s.id"
@@ -74,8 +78,18 @@ export default class Dashboard extends Vue {
       method: "DELETE",
       headers: { "content-type": "application/json" },
     });
-    const data = await res.json();
-    this.getRequests();
+    await res.json().then(() => {
+      this.getRequests();
+    });
+  }
+
+  async updatedBurguer(event, id) {
+    const option = event.target.value;
+    const res = await fetch(`http://localhost:3000/burgers/${id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ status: option }),
+    });
   }
 
   mounted() {
