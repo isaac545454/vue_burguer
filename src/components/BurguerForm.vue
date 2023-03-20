@@ -15,7 +15,6 @@
         <div class="input-container">
           <label for="bread"> Escolha o pão </label>
           <select id="bread" v-model="breadUser" placeholder="Digite seu Nome">
-            <option value="">Selecione Seu Pão</option>
             <option v-for="b in bread" :key="b.id" :value="b.tipo">
               {{ b.tipo }}
             </option>
@@ -24,7 +23,6 @@
         <div class="input-container">
           <label for="meat"> Escolha o Carne </label>
           <select id="meat" v-model="meatUser" placeholder="Digite seu Nome">
-            <option value="">Selecione o Tipo de Carne</option>
             <option v-for="m in meat" :key="m.id" :value="m.tipo">
               {{ m.tipo }}
             </option>
@@ -86,6 +84,12 @@ export default class BurguerForm extends Vue {
 
   async createBurger(e) {
     e.preventDefault();
+
+    if (!this.name || !this.meatUser || !this.breadUser) {
+      this.msg = "Preencha todos os campos";
+      setTimeout(() => (this.msg = ""), 3000);
+      return;
+    }
     const data = {
       nome: this.name,
       carne: this.meatUser,
