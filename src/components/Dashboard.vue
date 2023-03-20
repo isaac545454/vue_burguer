@@ -25,7 +25,14 @@
         </div>
         <div>
           <select name="status" class="status">
-            <option value="">aaaaa</option>
+            <option
+              v-for="s in status"
+              :key="s.id"
+              :value="s.tipo"
+              :selected="b.status == s.tipo"
+            >
+              {{ s.tipo }}
+            </option>
           </select>
           <button class="delete-btn">Cancelar</button>
         </div>
@@ -53,8 +60,16 @@ export default class Dashboard extends Vue {
     console.log(this.burguers);
   }
 
+  async getRequestsStatus() {
+    const res = await fetch("http://localhost:3000/status");
+    const data = await res.json();
+    this.status = data;
+    console.log(this.status);
+  }
+
   mounted() {
     this.getRequests();
+    this.getRequestsStatus();
   }
 }
 </script>
