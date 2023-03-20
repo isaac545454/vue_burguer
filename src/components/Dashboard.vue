@@ -1,5 +1,6 @@
 <template>
   <div id="burguer-table">
+    <Message :msg="msg" v-show="msg" />
     <div>
       <div id="burguer-table-heading">
         <div class="order-id">#:</div>
@@ -48,14 +49,21 @@
 </template>
 
 <script  >
-import { Vue } from "vue-class-component";
+import { Vue, Options } from "vue-class-component";
+import Message from "./message.vue";
 
+@Options({
+  components: {
+    Message,
+  },
+})
 export default class Dashboard extends Vue {
   data() {
     return {
       burguers: null,
       burguers_id: null,
       status: [],
+      msg: null,
     };
   }
 
@@ -80,15 +88,21 @@ export default class Dashboard extends Vue {
     });
     await res.json().then(() => {
       this.getRequests();
+
+      this.msg = "Pedido cancelado com sucesso";
+      setTimeout(() => (this.msg = ""), 3000);
     });
   }
 
   async updatedBurguer(event, id) {
     const option = event.target.value;
-    const res = await fetch(`http://localhost:3000/burgers/${id}`, {
+    await fetch(`http://localhost:3000/burgers/${id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ status: option }),
+    }).then(() => {
+      this.msg = "Pedido Atualizado com sucesso";
+      setTimeout(() => (this.msg = ""), 3000);
     });
   }
 

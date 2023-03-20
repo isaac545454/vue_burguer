@@ -77,16 +77,5 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": [
-    {
-      "nome": "Teste 123",
-      "carne": "Picanha",
-      "pao": "Parmesão e Orégano",
-      "opcionais": [
-        "Cheddar"
-      ],
-      "status": "Finalizado",
-      "id": 7
-    }
-  ]
+  "burgers": []
 }
