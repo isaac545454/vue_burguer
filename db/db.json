@@ -79,66 +79,6 @@
   ],
   "burgers": [
     {
-      "nome": "aaaaaaaaaaa",
-      "carne": "Maminha",
-      "pao": "Italiano Branco",
-      "opcionais": [
-        "Bacon"
-      ],
-      "status": "Solicitado",
-      "id": 1
-    },
-    {
-      "nome": "aaaaaaaaaaaaaaa",
-      "carne": "Maminha",
-      "pao": "Italiano Branco",
-      "opcionais": [
-        "Cheddar"
-      ],
-      "status": "Solicitado",
-      "id": 2
-    },
-    {
-      "nome": "aaaaaaaaaaaaaaaa",
-      "carne": "Maminha",
-      "pao": "3 Queijos",
-      "opcionais": [
-        "Bacon"
-      ],
-      "status": "Solicitado",
-      "id": 3
-    },
-    {
-      "nome": "aaaaaaaaaaaaa",
-      "carne": "Maminha",
-      "pao": "Italiano Branco",
-      "opcionais": [
-        "Cheddar"
-      ],
-      "status": "Solicitado",
-      "id": 4
-    },
-    {
-      "nome": "aaaaaaaaaaaaaaaa",
-      "carne": "Maminha",
-      "pao": "3 Queijos",
-      "opcionais": [
-        "Bacon"
-      ],
-      "status": "Solicitado",
-      "id": 5
-    },
-    {
-      "nome": "aaaaaaaaaaaaaa",
-      "carne": "Picanha",
-      "pao": "Italiano Branco",
-      "opcionais": [
-        "Bacon"
-      ],
-      "status": "Solicitado",
-      "id": 6
-    },
-    {
       "nome": "Teste 123",
       "carne": "Picanha",
       "pao": "Parmesão e Orégano",
@@ -147,28 +87,6 @@
       ],
       "status": "Solicitado",
       "id": 7
-    },
-    {
-      "nome": "ILDECI GOMES MATOS SILVA",
-      "carne": "Alcatra",
-      "pao": "3 Queijos",
-      "opcionais": [
-        "Cheddar",
-        "Cebola roxa"
-      ],
-      "status": "Solicitado",
-      "id": 8
-    },
-    {
-      "nome": "Teste 123",
-      "carne": "Maminha",
-      "pao": "3 Queijos",
-      "opcionais": [
-        "Bacon",
-        "Cebola roxa"
-      ],
-      "status": "Solicitado",
-      "id": 9
     }
   ]
 }

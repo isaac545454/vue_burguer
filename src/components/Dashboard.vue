@@ -34,7 +34,9 @@
               {{ s.tipo }}
             </option>
           </select>
-          <button class="delete-btn">Cancelar</button>
+          <button class="delete-btn" @click="deleteBurguer(b.id)">
+            Cancelar
+          </button>
         </div>
       </div>
     </div>
@@ -42,7 +44,7 @@
 </template>
 
 <script  >
-import { Options, Vue } from "vue-class-component";
+import { Vue } from "vue-class-component";
 
 export default class Dashboard extends Vue {
   data() {
@@ -65,6 +67,15 @@ export default class Dashboard extends Vue {
     const data = await res.json();
     this.status = data;
     console.log(this.status);
+  }
+
+  async deleteBurguer(id) {
+    const res = await fetch(`http://localhost:3000/burgers/${id}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+    });
+    const data = await res.json();
+    this.getRequests();
   }
 
   mounted() {
