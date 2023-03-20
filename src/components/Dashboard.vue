@@ -11,20 +11,21 @@
       </div>
     </div>
     <div id="burguer-table-rows">
-      <div class="burguer-table-row">
-        <div class="order-number">1</div>
-        <div>Isaac</div>
-        <div>pão</div>
-        <div>Maminha</div>
+      <div class="burguer-table-row" v-for="b in burguers" :key="b.id">
+        <div class="order-number">{{ b.id }}</div>
+        <div>{{ b.nome }}</div>
+        <div>{{ b.pao }}</div>
+        <div>{{ b.carne }}</div>
         <div>
           <ul>
-            <li>Salame</li>
-            <li>Tomate</li>
+            <li v-for="(o, index) in b.opcionais" :key="index">
+              {{ o }}
+            </li>
           </ul>
         </div>
         <div>
           <select name="status" class="status">
-            <option value="">aaaaaaaaaaaa</option>
+            <option value="">aaaaa</option>
           </select>
           <button class="delete-btn">Cancelar</button>
         </div>
@@ -33,9 +34,29 @@
   </div>
 </template>
 
-<script lang="ts" >
+<script  >
 import { Options, Vue } from "vue-class-component";
-export default class Dashboard extends Vue {}
+
+export default class Dashboard extends Vue {
+  data() {
+    return {
+      burguers: null,
+      burguers_id: null,
+      status: [],
+    };
+  }
+
+  async getRequests() {
+    const res = await fetch("http://localhost:3000/burgers");
+    const data = await res.json();
+    this.burguers = data;
+    console.log(this.burguers);
+  }
+
+  mounted() {
+    this.getRequests();
+  }
+}
 </script>
 
 <style scoped>
@@ -78,15 +99,6 @@ export default class Dashboard extends Vue {}
   width: 100%;
   padding: 12px;
   border-bottom: 1px solid #ccc;
-}
-
-.order-number {
-}
-
-.status {
-}
-
-.delete-btn {
 }
 
 select {

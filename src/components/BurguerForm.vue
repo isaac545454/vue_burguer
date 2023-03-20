@@ -52,7 +52,7 @@
   </div>
 </template>
 
-<script>
+<script >
 import { Vue, Options } from "vue-class-component";
 import Message from "./message.vue";
 
