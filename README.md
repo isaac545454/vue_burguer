@@ -1,7 +1,4 @@
-# vtex
 
-## Project setup
-```
 yarn install
 ```
 
